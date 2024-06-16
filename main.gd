@@ -17,10 +17,6 @@ func _ready():
 	
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		#var ball = self.get_parent_node_3d().get_child(1)
-		#var dupe = ball.duplicate()
-		#dupe.position = player_pos
-		#self.get_parent_node_3d().add_child(dupe)
 		current_fruit.reparent(self)
 		current_fruit.freeze = false
 		current_fruit.find_child("CollisionShape3D").set_deferred("disabled", false)
