@@ -37,7 +37,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p _site
-          godot --headless --verbose --export-release "HTML5" _site/index.html
+          godot --headless --verbose --export-release "Web" _site/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         
