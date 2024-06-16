@@ -39,7 +39,7 @@ jobs:
           mkdir -v -p _site
           godot --headless --verbose --export-release "Web" _site/index.html
       - name: Download COI Service Worker
-        run: wget -P https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js
+        run: wget -P _site "https://raw.githubusercontent.com/gzuidhof/coi-serviceworker/master/coi-serviceworker.min.js"
       - name: Inject COI Import
         run: sed -i '7i <script src="coi-serviceworker.min.js"></script>' _site/index.html
       - name: Upload artifact
