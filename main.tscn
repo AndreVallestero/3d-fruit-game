@@ -1,17 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcmoj252vjmyy"]
+[gd_scene load_steps=8 format=3 uid="uid://bcmoj252vjmyy"]
 
 [ext_resource type="Script" path="res://Camera3D.gd" id="1_4nka1"]
+[ext_resource type="Script" path="res://main.gd" id="1_hxxgy"]
 [ext_resource type="Texture2D" uid="uid://cfj8431ausi2f" path="res://icon.svg" id="1_tyck6"]
 [ext_resource type="Texture2D" uid="uid://do8d1j8pb3d2j" path="res://marker.png" id="3_4dtbb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bmcgt"]
-shading_mode = 0
-albedo_texture = ExtResource("1_tyck6")
-
-[sub_resource type="SphereMesh" id="SphereMesh_6fy0x"]
-material = SubResource("StandardMaterial3D_bmcgt")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_fmltg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpgb8"]
 transparency = 1
@@ -26,18 +18,11 @@ size = Vector2(10, 10)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ro3uv"]
 
 [node name="Node3DRoot" type="Node3D"]
+script = ExtResource("1_hxxgy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
 script = ExtResource("1_4nka1")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_6fy0x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_fmltg")
 
 [node name="Node3DContainer" type="Node3D" parent="."]
 

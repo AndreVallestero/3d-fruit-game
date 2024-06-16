@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://r3f477rda80c"]
+
+[ext_resource type="Texture2D" uid="uid://cfj8431ausi2f" path="res://icon.svg" id="1_fic26"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_soo0m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nc4tt"]
+shading_mode = 0
+albedo_texture = ExtResource("1_fic26")
+
+[sub_resource type="SphereMesh" id="SphereMesh_66eeb"]
+material = SubResource("StandardMaterial3D_nc4tt")
+
+[node name="RigidBody3D" type="RigidBody3D"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_soo0m")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_66eeb")
