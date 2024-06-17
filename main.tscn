@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcmoj252vjmyy"]
+[gd_scene load_steps=9 format=3 uid="uid://bcmoj252vjmyy"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_hxxgy"]
 [ext_resource type="Texture2D" uid="uid://cfj8431ausi2f" path="res://icon.svg" id="1_tyck6"]
-[ext_resource type="Texture2D" uid="uid://do8d1j8pb3d2j" path="res://marker.png" id="3_4dtbb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpgb8"]
 transparency = 1
@@ -15,6 +14,19 @@ material = SubResource("StandardMaterial3D_vpgb8")
 size = Vector2(10, 10)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ro3uv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_voft0"]
+margin = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yugel"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.501961)
+
+[sub_resource type="TorusMesh" id="TorusMesh_g25tf"]
+material = SubResource("StandardMaterial3D_yugel")
+inner_radius = 0.25
+outer_radius = 0.5
 
 [node name="Node3DRoot" type="Node3D"]
 script = ExtResource("1_hxxgy")
@@ -76,9 +88,12 @@ shape = SubResource("WorldBoundaryShape3D_ro3uv")
 [node name="Node3DPlayer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="Decal" type="Decal" parent="Node3DPlayer"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0)
-size = Vector3(0.99, 12, 0.99)
-texture_albedo = ExtResource("3_4dtbb")
-upper_fade = 1.83105e-05
-lower_fade = 1e-05
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Node3DPlayer"]
+shape = SubResource("SphereShape3D_voft0")
+target_position = Vector3(0, -10, 0)
+max_results = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3DPlayer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+mesh = SubResource("TorusMesh_g25tf")
+skeleton = NodePath("../..")

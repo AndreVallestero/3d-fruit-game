@@ -12,7 +12,7 @@ config_version=5
 
 config/name="3D Fruit Game"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [input]
@@ -36,6 +36,6 @@ ui_right={
 
 [rendering]
 
-renderer/rendering_method="mobile"
-renderer/rendering_method.web="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/msaa_3d=1

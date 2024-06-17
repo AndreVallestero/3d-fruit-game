@@ -9,10 +9,15 @@ var orbit_pos = 0
 var camera
 var player
 var current_fruit
+var current_radius
+var marker_shape_cast: ShapeCast3D
+var marker: MeshInstance3D
 
 func _ready():
 	camera = $Camera3D
 	player = $Node3DPlayer
+	marker_shape_cast = player.find_child("ShapeCast3D")
+	marker = player.find_child("MeshInstance3D")
 	spawn_fruit()
 	
 func _input(event):
@@ -36,17 +41,19 @@ func _process(delta):
 		camera.project_ray_normal(mouse_position)
 	)
 	if plane_pos:
-		player.position = player_clamp(1, plane_pos)
+		player.position = player_clamp(current_radius, plane_pos)
+		marker.position.y = -10 * marker_shape_cast.get_closest_collision_unsafe_fraction() - current_radius
+	
 
-func player_clamp(fruit_width, pos):
-	var radius = fruit_width / 2.0
+func player_clamp(fruit_radius, pos):
 	return Vector3(
-		clamp(pos.x, -5 + radius, 5 - radius),
+		clamp(pos.x, -5 + fruit_radius, 5 - fruit_radius),
 		5,
-		clamp(pos.z, -5 + radius, 5 - radius)
+		clamp(pos.z, -5 + fruit_radius, 5 - fruit_radius)
 	)
 	
 func spawn_fruit():
 	current_fruit = fruit_scene.instantiate()
+	current_radius = current_fruit.find_child("CollisionShape3D").shape.radius
 	player.add_child(current_fruit)
 	
