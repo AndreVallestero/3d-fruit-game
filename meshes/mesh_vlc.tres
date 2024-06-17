@@ -1,0 +1,10 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://b7rp3hhxrveie"]
+
+[ext_resource type="Texture2D" uid="uid://brp8rjb4vqxf3" path="res://meshes/vlc.png" id="1_ulfta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njnpl"]
+shading_mode = 0
+albedo_texture = ExtResource("1_ulfta")
+
+[resource]
+material = SubResource("StandardMaterial3D_njnpl")

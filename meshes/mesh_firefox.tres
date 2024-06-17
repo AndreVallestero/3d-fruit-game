@@ -9,5 +9,3 @@ texture_filter = 1
 
 [resource]
 material = SubResource("StandardMaterial3D_njnpl")
-radius = 2.0
-height = 4.0

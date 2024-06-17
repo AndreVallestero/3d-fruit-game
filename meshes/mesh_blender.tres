@@ -8,5 +8,3 @@ albedo_texture = ExtResource("1_7uikl")
 
 [resource]
 material = SubResource("StandardMaterial3D_njnpl")
-radius = 0.707
-height = 1.414

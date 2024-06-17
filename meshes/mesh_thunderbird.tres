@@ -1,0 +1,10 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://46ukadrquhso"]
+
+[ext_resource type="Texture2D" uid="uid://c2tn4vs82yb01" path="res://meshes/thunderbird.png" id="1_mx0ls"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njnpl"]
+shading_mode = 0
+albedo_texture = ExtResource("1_mx0ls")
+
+[resource]
+material = SubResource("StandardMaterial3D_njnpl")

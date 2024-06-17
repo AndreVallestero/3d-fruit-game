@@ -8,7 +8,6 @@ var orbit_pos = 0
 var camera
 var player
 var current_fruit
-var current_radius
 var marker_shape_cast: ShapeCast3D
 var marker: MeshInstance3D
 
@@ -56,16 +55,6 @@ func spawn_fruit():
 	current_fruit.set_tier(randi_range(0, 2))
 	current_fruit.rotation = Vector3(randf() * TAU, randf() * TAU, randf() * TAU)
 	player.add_child(current_fruit)
+	marker_shape_cast.shape.radius = current_fruit.radius
 	marker.mesh.outer_radius = current_fruit.radius
 	marker.mesh.inner_radius = current_fruit.radius / 2 -0.01
-	
-func collision_detected(fruit1: RigidBody3D, fruit2: RigidBody3D):
-	if fruit1.tier == fruit2.tier:
-		var midpoint = fruit1.position + 0.5 * (fruit2.position - fruit1.position)
-		remove_child(fruit2)
-		fruit2.queue_free()
-		fruit1.position = midpoint
-		fruit1.update_tier(fruit1.tier + 1)
-		fruit1.angular_velocity = Vector3.ZERO
-		fruit1.linear_velocity = Vector3.ZERO
-	
