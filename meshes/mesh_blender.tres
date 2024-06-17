@@ -1,0 +1,12 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://p3wsf1o8pqce"]
+
+[ext_resource type="Texture2D" uid="uid://dqjqhjiabf6n4" path="res://meshes/blender.svg" id="1_26dgy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njnpl"]
+shading_mode = 0
+albedo_texture = ExtResource("1_26dgy")
+
+[resource]
+material = SubResource("StandardMaterial3D_njnpl")
+radius = 0.707
+height = 1.414

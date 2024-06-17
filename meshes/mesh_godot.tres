@@ -1,0 +1,10 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://mefe1lom54e0"]
+
+[ext_resource type="Texture2D" uid="uid://cfj8431ausi2f" path="res://icon.svg" id="1_gni5a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uh8y"]
+shading_mode = 0
+albedo_texture = ExtResource("1_gni5a")
+
+[resource]
+material = SubResource("StandardMaterial3D_2uh8y")

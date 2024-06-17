@@ -54,6 +54,7 @@ func player_clamp(fruit_radius, pos):
 	
 func spawn_fruit():
 	current_fruit = fruit_scene.instantiate()
+	current_fruit.set_tier(randi_range(0, 2))
 	current_radius = current_fruit.find_child("CollisionShape3D").shape.radius
 	player.add_child(current_fruit)
 	
