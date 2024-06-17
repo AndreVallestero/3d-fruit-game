@@ -1,10 +1,10 @@
 [gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://d32xvsalwaq5f"]
 
-[ext_resource type="Texture2D" uid="uid://d2x31sav2oum7" path="res://meshes/tux.svg" id="1_7pp7w"]
+[ext_resource type="Texture2D" uid="uid://duf6pr01aruo4" path="res://meshes/tux.png" id="1_w7810"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmce0"]
 shading_mode = 0
-albedo_texture = ExtResource("1_7pp7w")
+albedo_texture = ExtResource("1_w7810")
 
 [resource]
 material = SubResource("StandardMaterial3D_tmce0")

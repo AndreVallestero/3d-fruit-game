@@ -1,0 +1,12 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://dly6pkbdh6pmm"]
+
+[ext_resource type="Texture2D" uid="uid://b6kjrttq17cvw" path="res://meshes/krita.png" id="1_hq8xe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8swf7"]
+shading_mode = 0
+albedo_texture = ExtResource("1_hq8xe")
+
+[resource]
+material = SubResource("StandardMaterial3D_8swf7")
+radius = 1.414
+height = 2.828

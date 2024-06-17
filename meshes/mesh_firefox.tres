@@ -1,0 +1,13 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://ct51r5wm1u4u"]
+
+[ext_resource type="Texture2D" uid="uid://cwcf88d43g0u3" path="res://meshes/firefox.png" id="1_qkmob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njnpl"]
+shading_mode = 0
+albedo_texture = ExtResource("1_qkmob")
+texture_filter = 1
+
+[resource]
+material = SubResource("StandardMaterial3D_njnpl")
+radius = 2.0
+height = 4.0

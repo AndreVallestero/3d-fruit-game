@@ -4,9 +4,12 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_soo0m"]
 resource_local_to_scene = true
+margin = 0.0
 
 [node name="RigidBody3D" type="RigidBody3D"]
 freeze = true
+max_contacts_reported = 100
+contact_monitor = true
 script = ExtResource("1_843l8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -14,3 +17,5 @@ shape = SubResource("SphereShape3D_soo0m")
 disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
