@@ -1,7 +1,8 @@
 extends Node3D
 
+const HEIGHT = 16
 const SPEED = TAU / 3
-const DROP_PLANE = Plane(0, 1, 0, 5)
+const DROP_PLANE = Plane(0, 1, 0, HEIGHT/2)
 
 var fruit_scene = preload("res://fruit.tscn")
 var orbit_pos = 0
@@ -34,7 +35,7 @@ func _process(delta):
 	)
 	if plane_pos:
 		player.position = player_clamp(plane_pos)
-	marker.position.y = -10 * marker_shape_cast.get_closest_collision_safe_fraction() - current_fruit.radius
+	marker.position.y = -HEIGHT * marker_shape_cast.get_closest_collision_safe_fraction() - current_fruit.radius
 	
 	var input_dir = Input.get_axis("ui_left", "ui_right")
 	if input_dir:
@@ -46,7 +47,7 @@ func _process(delta):
 func player_clamp(pos):
 	return Vector3(
 		clamp(pos.x, -5 + current_fruit.radius, 5 - current_fruit.radius),
-		5,
+		HEIGHT/2,
 		clamp(pos.z, -5 + current_fruit.radius, 5 - current_fruit.radius)
 	)
 	

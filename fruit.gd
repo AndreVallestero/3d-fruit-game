@@ -34,3 +34,5 @@ func _on_body_entered(body):
 		_ready()
 		angular_velocity /= 4
 		linear_velocity /= 4
+		get_colliding_bodies().map(_on_body_entered) # recurse for new collisions
+			
