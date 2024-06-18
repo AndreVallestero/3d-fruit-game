@@ -40,9 +40,9 @@ func _on_body_entered(body):
 		linear_velocity /= 4
 		
 		# Update score
-		get_parent().add_score(sphere_volume(radius) - old_volume)
+		get_parent().get_parent().add_score(sphere_volume(radius) - old_volume)
 		
 		get_colliding_bodies().map(_on_body_entered) # recurse for new collisions
 		
-func sphere_volume(radius):
-	return 4 * PI * radius ** 3 / 3
+func sphere_volume(r):
+	return 4 * PI * r ** 3 / 3

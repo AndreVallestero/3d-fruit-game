@@ -1,10 +1,12 @@
 extends Node3D
 
 const HEIGHT = 16
+const MAX_Y = HEIGHT / 2
 const SPEED = TAU / 3
-const DROP_PLANE = Plane(0, 1, 0, HEIGHT/2)
+const DROP_PLANE = Plane(0, 1, 0, MAX_Y)
 const GUIDE_FADE_DURATION = 3000
-const DROP_COOLDOWN = 1000
+const DROP_COOLDOWN = 650
+const OUT_OF_BOUND_TIME_LIMIT = 3000
 
 var fruit_scene = preload("res://fruit.tscn")
 var orbit_pos = 0
@@ -18,25 +20,46 @@ var guide
 var next_drop
 var score = 0
 var label_score
+var collection
+var end_game_time
+var game_over
 
 func _ready():
 	camera = $Camera3D
 	player = $Node3DPlayer
 	guide = $LabelGuide
 	label_score = $LabelScore
+	collection = $Node3DFruitCollection
 	marker_shape_cast = player.find_child("ShapeCast3D")
 	marker = player.find_child("MeshInstance3D")
 	spawn_fruit()
 	
 func _input(event):
 	var current_time = Time.get_ticks_msec()
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT and (not next_drop or next_drop < current_time):
+	if event is InputEventMouseButton and event.is_pressed() \
+			and event.button_index == MOUSE_BUTTON_LEFT \
+			and (not next_drop or next_drop < current_time) \
+			and not game_over:
 		next_drop = current_time + DROP_COOLDOWN
-		current_fruit.reparent(self)
+		current_fruit.reparent(collection)
 		current_fruit.freeze = false
 		current_fruit.find_child("CollisionShape3D").set_deferred("disabled", false)
+		add_score(sphere_volume(current_fruit.radius))
 		spawn_fruit()
 		trigger_guide_fade()
+		
+func _physics_process(_delta):
+	var current_time = Time.get_ticks_msec()
+	for node in collection.get_children():
+		if node.position.y > MAX_Y:
+			if not end_game_time:
+				end_game_time = current_time + OUT_OF_BOUND_TIME_LIMIT
+				label_score.modulate = Color("red")
+			elif current_time > end_game_time:
+				end_game()
+			return
+	end_game_time = null
+	label_score.modulate = Color("white")
 
 # Called every frame
 func _process(delta):
@@ -75,7 +98,6 @@ func spawn_fruit():
 	current_fruit.set_tier(randi_range(0, 2))
 	current_fruit.rotation = Vector3(randf() * TAU, randf() * TAU, randf() * TAU)
 	player.add_child(current_fruit)
-	add_score(sphere_volume(current_fruit.radius))
 	marker_shape_cast.shape.radius = current_fruit.radius
 	marker.mesh.outer_radius = current_fruit.radius
 	marker.mesh.inner_radius = current_fruit.radius / 2 -0.01
@@ -91,3 +113,17 @@ func add_score(amount):
 func sphere_volume(radius):
 	return 4 * PI * radius ** 3 / 3
 	
+func end_game():
+	game_over = true
+	for child in collection.get_children():
+		child.freeze = true
+	$Button.visible = true
+
+func _on_button_pressed():
+	$Button.visible = false
+	score = 0
+	label_score.text = "Score: 0"
+	for child in collection.get_children():
+		collection.remove_child(child)
+		child.queue_free()
+	game_over = false
