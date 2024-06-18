@@ -4,11 +4,11 @@ const SQRT2 = sqrt(2)
 const tier_mesh = [
 	preload("res://meshes/mesh_godot.tres"),
 	preload("res://meshes/mesh_krita.tres"),       #   4M users
-	preload("res://meshes/mesh_blender.tres"),     #   7M users
 	preload("res://meshes/mesh_thunderbird.tres"), #  20M users
 	preload("res://meshes/mesh_firefox.tres"),     # 240M users
 	preload("res://meshes/mesh_vlc.tres"),         # 300M users
 	preload("res://meshes/mesh_tux.tres"),         # 1B+ servers
+	preload("res://meshes/mesh_blender.tres"),     #   7M users, my friend wanted this to be the biggest
 ]
 
 var tier
