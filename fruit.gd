@@ -26,13 +26,23 @@ func _ready():
 	
 func _on_body_entered(body):
 	if body is RigidBody3D and tier == body.tier and tier < len(tier_mesh) - 1:
+		# Remove other body
 		var midpoint = position + 0.5 * (body.position - position)
 		get_parent().remove_child(body)
 		body.queue_free()
+		var old_volume = sphere_volume(radius)
+		
+		# Update self
 		position = midpoint
 		set_tier(tier + 1)
 		_ready()
 		angular_velocity /= 4
 		linear_velocity /= 4
+		
+		# Update score
+		get_parent().add_score(sphere_volume(radius) - old_volume)
+		
 		get_colliding_bodies().map(_on_body_entered) # recurse for new collisions
-			
+		
+func sphere_volume(radius):
+	return 4 * PI * radius ** 3 / 3

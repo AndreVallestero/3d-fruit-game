@@ -38,6 +38,23 @@ script = ExtResource("1_hxxgy")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 12, 10)
 
+[node name="LabelGuide" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Pres \"A\" / \"D\" or Left / Right to rotate"
+horizontal_alignment = 1
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 10.0
+offset_right = 75.0
+offset_bottom = 23.0
+text = "Score: 0"
+
 [node name="Node3DContainer" type="Node3D" parent="."]
 
 [node name="StaticBody3DFloor" type="StaticBody3D" parent="Node3DContainer"]
