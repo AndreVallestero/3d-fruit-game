@@ -51,7 +51,7 @@ func _input(event):
 func _physics_process(_delta):
 	var current_time = Time.get_ticks_msec()
 	for node in collection.get_children():
-		if node.position.y > MAX_Y:
+		if node.position.y + node.radius > MAX_Y and (not next_drop or next_drop < current_time):
 			if not end_game_time:
 				end_game_time = current_time + OUT_OF_BOUND_TIME_LIMIT
 				label_score.modulate = Color("red")
@@ -119,6 +119,7 @@ func end_game():
 		child.freeze = true
 	$Button.visible = true
 
+# Restart
 func _on_button_pressed():
 	$Button.visible = false
 	score = 0
@@ -127,3 +128,4 @@ func _on_button_pressed():
 		collection.remove_child(child)
 		child.queue_free()
 	game_over = false
+	guide_fade_time = null
