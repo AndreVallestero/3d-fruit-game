@@ -10,7 +10,7 @@
   <img align="center" src="https://github.com/AndreVallestero/3d-fruit-game/assets/39736205/fae3c178-716d-4e73-9df0-8b65336e2b90"/>
 </p>
 
-## Instructions
+## How To Play
 - Left click to place new fruits
 - A / D or Left / Right to rotate the camera
 - Try to get the highest score possible before topping-out!
